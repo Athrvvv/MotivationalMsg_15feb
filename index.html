@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Motivational Quotes</title>
+    <style>
+        * {
+            font-size: 40px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        
+        h1 {
+            background-color: rgb(11, 47, 57);
+            border-radius: 40px;
+            width: 40%;
+            color: whitesmoke;
+        }
+        
+        body {
+            background-image: url(img.jpg);
+        }
+        
+        h2 {
+            color: beige;
+        }
+    </style>
+    <script>
+        function mm() {
+            event.preventDefault();
+            let msg = document.getElementById("id_msg");
+            let url = "https://api.quotable.io/random";
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    let content = data.content + "-->" + data.author;
+                    msg.innerHTML = content;
+                })
+                .catch(err => {
+                    let ans = "issue" + err;
+                    msg.innerHTML = ans;
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1>Motivational Quotes</h1>
+        <form onsubmit="mm()">
+            <input type="submit" value="show" />
+        </form>
+        <h2 id="id_msg"></h2>
+    </center>
+</body>
+
+</html>
